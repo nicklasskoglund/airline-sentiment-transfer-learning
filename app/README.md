@@ -1,40 +1,40 @@
-# Flygbolags-sentiment — Streamlit-app (Steg 7: Implementera modellen)
+# Airline Sentiment — Streamlit App (Step 7: Deploy the Model)
 
-Den här appen är det sista steget i transfer learning-flödet: att faktiskt
-**använda** den DistilBERT-modell som tränas i
-`Airline_Sentiment_Transfer_Learning.ipynb`.
+This app is the final step of the transfer learning flow: actually **using** the
+DistilBERT model trained in `04_supervised_classification.ipynb`.
 
-## Så kör du appen
+## Running the app
 
-1. **Kör notebooken först** (i Google Colab, se instruktionerna högst upp i den).
-   Sista cellerna sparar två saker:
-   - `airline_sentiment_distilbert.keras`
-   - mappen `airline_sentiment_tokenizer/`
+1. **Run the notebooks first** (in Google Colab — see `notebooks/01_data_preparation.ipynb`
+   for setup instructions, then run `01` → `04` in order). Notebook 04 saves:
+   - `models/sentiment_model.keras`
+   - `models/sentiment_tokenizer/`
 
-2. Ladda ner de filerna från Colab och lägg dem i **samma mapp** som `app.py`.
+2. Download those files from Colab and place them in the `app/models/` folder
+   (or update `MODEL_PATH` / `TOKENIZER_PATH` at the top of `app.py` to match
+   wherever you put them).
 
-3. Installera beroenden:
-   ```bash
+3. Install dependencies:
+```bash
    pip install -r requirements.txt
-   ```
+```
 
-4. Starta appen:
-   ```bash
+4. Start the app:
+```bash
    streamlit run app.py
-   ```
+```
 
-5. Öppna länken som visas i terminalen (vanligtvis `http://localhost:8501`).
+5. Open the link shown in the terminal (usually `http://localhost:8501`).
 
-## Vad appen innehåller
+## What the app includes
 
-- **🔍 Klassificera tweets** — skriv in text direkt eller ladda upp en CSV
-  (kolumn `text`) för att klassificera flera kommentarer på en gång, med
-  nedladdningsbart resultat.
-- **📊 Kundtjänst-dashboard** — samma affärsinsikter som i presentationen
-  (sentimentfördelning, per flygbolag, vanligaste klagomål), hämtat live
-  från datasetet.
-- **ℹ️ Om modellen** — kort sammanfattning av hur modellen är byggd.
+- **🔍 Classify tweets** — type text directly or upload a CSV (column `text`) to
+  classify several comments at once, with a downloadable result.
+- **📊 Customer service dashboard** — the same business insights as in the
+  presentation (sentiment distribution, by airline, most common complaints),
+  fetched live from the dataset.
+- **ℹ️ About the model** — a short summary of how the model is built.
 
-> Om modellfilerna saknas visar appen ett tydligt meddelande om detta i
-> sidomenyn istället för att krascha — dashboard- och info-sidorna fungerar
-> även utan tränad modell.
+> If the model files are missing, the app shows a clear message in the sidebar
+> instead of crashing — the dashboard and info pages still work without a
+> trained model.

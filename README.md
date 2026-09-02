@@ -1,57 +1,55 @@
-# Sentimentanalys av flygbolagstweets — Transfer Learning med DistilBERT
+# Airline Tweet Sentiment Analysis — Transfer Learning with DistilBERT
 
-Ett litet, snabbt transfer learning-projekt: kan en förtränad språkmodell (DistilBERT)
-läras att automatiskt klassificera kundkommentarer om flygbolag på sociala medier —
-både *vad* kunden känner (sentiment) och *varför* (orsak)?
+A small, fast transfer learning project: can a pretrained language model (DistilBERT)
+be taught to automatically classify customer comments about airlines on social media —
+both *what* the customer feels (sentiment) and *why* (reason)?
 
 **Dataset:** [Twitter US Airline Sentiment](https://www.kaggle.com/crowdflower/twitter-airline-sentiment)
-(Kaggle / Crowdflower), 14 640 tweets om 6 amerikanska flygbolag.
+(Kaggle / Crowdflower), 14,640 tweets about 6 US airlines.
 
-## Struktur
+## Structure
 
-Projektet är uppdelat i 6 notebooks som körs i ordning — varje notebook gör en sak och
-sparar resultatet till disk så nästa kan bygga vidare:
+The project is split into 6 notebooks that run in order — each notebook does one thing
+and saves its result to disk so the next one can build on it:
 
-| # | Notebook | Vad den gör |
-|---|----------|-------------|
-| 01 | [`01_data_preparation.ipynb`](notebooks/01_data_preparation.ipynb) | Hämtar, städar och delar upp datan |
-| 02 | [`02_eda.ipynb`](notebooks/02_eda.ipynb) | Utforskar datan och bygger databerättelsen |
-| 03 | [`03_unsupervised_clustering.ipynb`](notebooks/03_unsupervised_clustering.ipynb) | Undersöker om förtränade BERT-embeddings själva grupperar tweets efter sentiment — innan någon träning |
-| 04 | [`04_supervised_classification.ipynb`](notebooks/04_supervised_classification.ipynb) | Transfer learning: tränar DistilBERT att klassificera sentiment |
-| 05 | [`05_negative_reason_classification.ipynb`](notebooks/05_negative_reason_classification.ipynb) | Transfer learning på en andra uppgift: klassificera varför en tweet är negativ |
-| 06 | [`06_evaluation.ipynb`](notebooks/06_evaluation.ipynb) | Utvärderar båda modellerna och sammanfattar resultatet |
+| # | Notebook | What it does |
+|---|----------|---------------|
+| 01 | [`01_data_preparation.ipynb`](notebooks/01_data_preparation.ipynb) | Fetches, cleans, and splits the data |
+| 02 | [`02_eda.ipynb`](notebooks/02_eda.ipynb) | Explores the data and builds the data story |
+| 03 | [`03_unsupervised_clustering.ipynb`](notebooks/03_unsupervised_clustering.ipynb) | Checks whether pretrained BERT embeddings already group tweets by sentiment — before any training |
+| 04 | [`04_supervised_classification.ipynb`](notebooks/04_supervised_classification.ipynb) | Transfer learning: trains DistilBERT to classify sentiment |
+| 05 | [`05_negative_reason_classification.ipynb`](notebooks/05_negative_reason_classification.ipynb) | Transfer learning on a second task: classifying why a tweet is negative |
+| 06 | [`06_evaluation.ipynb`](notebooks/06_evaluation.ipynb) | Evaluates both models and summarizes the results |
 
-```
-.
-├── notebooks/        01–06, körs i ordning i Google Colab
-├── charts/           EDA-diagram (genereras/uppdateras av 02, 03, 04, 05, 06)
-├── data/             (gitignored) skapas av 01
-├── models/           (gitignored) skapas av 04 och 05
-├── app/              Streamlit-app: steg 7, använda modellerna i praktiken
-└── presentation/     Bildspel för projektpresentationen (~15 min)
-```
+    .
+    ├── notebooks/        01–06, run in order in Google Colab
+    ├── charts/           EDA charts (generated/updated by 02, 03, 04, 05, 06)
+    ├── data/             (gitignored) created by 01
+    ├── models/           (gitignored) created by 04 and 05
+    ├── app/              Streamlit app: step 7, using the models in practice
+    └── presentation/     Slide deck for the project presentation (~15 min)
 
-## Kom igång
+## Getting started
 
-1. Öppna notebook 01 i **Google Colab** (Runtime → Change runtime type → GPU för 03–06).
-2. Kör `01` → `02` → `03` → `04` → `05` → `06` **i samma Colab-session**, i ordning.
-   Varje notebook läser filer som en tidigare notebook sparat till `./data/`, `./charts/`
-   eller `./models/` — öppnar du en ny runtime mellan notebooks försvinner filerna.
-3. Ladda ner de sparade modellfilerna från Colab till `app/` och kör Streamlit-appen lokalt:
-   ```bash
-   cd app
-   pip install -r requirements.txt
-   streamlit run app.py
-   ```
+1. Open notebook 01 in **Google Colab** (Runtime → Change runtime type → GPU for 03–06).
+2. Run `01` → `02` → `03` → `04` → `05` → `06` **in the same Colab session**, in order.
+   Each notebook reads files a previous notebook saved to `./data/`, `./charts/`, or
+   `./models/` — opening a new runtime between notebooks means those files are lost.
+3. Download the saved model files from Colab into `app/` and run the Streamlit app locally:
 
-## Metod i korthet
+       cd app
+       pip install -r requirements.txt
+       streamlit run app.py
 
-- **Basmodell:** `distilbert-base-uncased` — ~60% snabbare än BERT, behåller ~97% av
-  språkförståelsen.
-- **Transfer learning-flöde:** frys bas → lägg till egna lager (Dense → Dropout → Dense) →
-  träna huvudet → lås upp de två sista transformerblocken → fine-tuna med lägre learning rate.
-- **Två modeller:** sentiment (negative/neutral/positive) och orsak till negativt sentiment
-  (6 kategorier), tränade med samma recept.
+## Method in brief
 
-Se [`presentation/`](presentation/) för problembeskrivning, metod, databerättelse och
-affärsvärde i sin helhet.
+- **Base model:** `distilbert-base-uncased` — ~60% faster than BERT, retains ~97% of its
+  language understanding.
+- **Transfer learning flow:** freeze base → add custom layers (Dense → Dropout → Dense) →
+  train the head → unfreeze the last two transformer blocks → fine-tune with a lower
+  learning rate.
+- **Two models:** sentiment (negative/neutral/positive) and reason behind negative
+  sentiment (6 categories), trained with the same recipe.
+
+See [`presentation/`](presentation/) for the full problem description, method, data
+story, and business value.
