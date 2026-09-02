@@ -1,0 +1,3 @@
+Den här mappen fylls av 01_data_preparation.ipynb när den körs (full_clean.csv, train.csv,
+val.csv, test.csv, reason_train.csv, reason_val.csv, reason_test.csv). Filerna committas
+inte till git — de hämtas/regenereras på nytt varje körning.

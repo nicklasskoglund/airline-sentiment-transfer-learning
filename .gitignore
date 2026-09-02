@@ -1,0 +1,25 @@
+# Genererad data (skapas av 01_data_preparation.ipynb — hämtas på nytt vid körning)
+data/*.csv
+
+# Tränade modeller (skapas av 04/05 — ofta 100+ MB, hör inte hemma i git utan Git LFS)
+models/*.keras
+models/*_tokenizer/
+models/*.json
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/

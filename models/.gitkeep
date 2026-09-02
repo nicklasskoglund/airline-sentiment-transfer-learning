@@ -1,0 +1,5 @@
+Den här mappen fylls av 04_supervised_classification.ipynb och
+05_negative_reason_classification.ipynb (sentiment_model.keras, reason_model.keras,
+tokenizers m.m.). Filerna committas inte till git — de kan bli stora (100+ MB) och
+regenereras genom att köra notebookerna. Använd Git LFS om ni vill versionshantera
+tränade modeller.
