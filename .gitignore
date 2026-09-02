@@ -1,5 +1,6 @@
 # Generated data (created by 01_data_preparation.ipynb — re-fetched on every run)
-data/*.csv
+data/*
+!data/.gitkeep
 
 # Trained models (created by 04/05 — often 100+ MB, don't belong in git without Git LFS)
 models/*.keras
