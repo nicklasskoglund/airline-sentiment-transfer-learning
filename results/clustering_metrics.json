@@ -1,0 +1,24 @@
+{
+  "n_samples": 900,
+  "n_clusters": 3,
+  "pca_explained_variance_2d": 0.259,
+  "adjusted_rand_index": 0.04,
+  "normalized_mutual_info": 0.048,
+  "cluster_vs_sentiment_crosstab": {
+    "negative": {
+      "0": 0.72,
+      "1": 0.69,
+      "2": 0.43
+    },
+    "neutral": {
+      "0": 0.2,
+      "1": 0.21,
+      "2": 0.25
+    },
+    "positive": {
+      "0": 0.08,
+      "1": 0.1,
+      "2": 0.32
+    }
+  }
+}

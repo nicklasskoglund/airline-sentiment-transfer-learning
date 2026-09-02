@@ -1,4 +1,4 @@
-tf-keras
+transformers>=4.40,<5.0
 transformers>=4.40
 tensorflow>=2.15
 scikit-learn>=1.3
