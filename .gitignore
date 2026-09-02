@@ -1,14 +1,13 @@
-# Genererad data (skapas av 01_data_preparation.ipynb — hämtas på nytt vid körning)
+# Generated data (created by 01_data_preparation.ipynb — re-fetched on every run)
 data/*.csv
 
-# Tränade modeller (skapas av 04/05 — ofta 100+ MB, hör inte hemma i git utan Git LFS)
+# Trained models (created by 04/05 — often 100+ MB, don't belong in git without Git LFS)
 models/*.keras
 models/*_tokenizer/
 models/*.json
 
 # Jupyter
 .ipynb_checkpoints/
-*/.ipynb_checkpoints/*
 
 # Python
 __pycache__/
@@ -16,6 +15,12 @@ __pycache__/
 .venv/
 venv/
 env/
+
+# VS Code
+.vscode/
+
+# Environment variables / secrets (in case API keys are added later)
+.env
 
 # OS
 .DS_Store
